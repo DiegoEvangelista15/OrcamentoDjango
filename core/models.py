@@ -22,11 +22,11 @@ class Company(Base):
     def __str__(self) -> str:
         return self.company_name
     
-class Pessoa(models.Model):
+class Pessoa(Base):
     name = models.CharField(max_length=200)
     user = models.CharField(max_length=200)
     phone = models.IntegerField()
     email = models.EmailField()     
     
     def __str__(self) -> str:
-        return self.nome
+        return self.name
