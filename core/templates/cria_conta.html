@@ -1,0 +1,113 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+    Criar Conta
+{% endblock title %}
+{% block content %}
+    <div class="text-center">
+        <div class="contact-area section-padding-0-80">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="section-heading">
+                            <br>
+                            <h3>Criar conta</h3>
+                            <br>
+                            <br>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="contact-form-area">
+                            <form action="#" method="post">
+                                {% csrf_token %}
+                                <div class="row">
+                                    <div class="col-12 col-lg-12">
+                                        <label for="complete_name">
+                                            <b>Nome Completo</b>
+                                        </label>
+                                        <input type="text"
+                                               class="form-control"
+                                               name="nome"
+                                               placeholder="Ex.:Diego Aparecido Evangelista"
+                                               required>
+                                    </div>
+                                    <div class="col-12 col-lg-12">
+                                        <label for="username">
+                                            <b>Usuario</b>
+                                        </label>
+                                        <input type="text"
+                                               class="form-control"
+                                               name="nome"
+                                               placeholder="Ex.:Diego Evangelista"
+                                               required>
+                                    </div>
+                                    <div class="col-12 col-lg-12">
+                                        <label for="tel">
+                                            <b>Telefone</b>
+                                        </label>
+                                        <input type="tel"
+                                               class="form-control"
+                                               id="phone" name="phone"
+                                               placeholder="19-14567-8901"
+                                               pattern="[0-9]{2}-[0-9]{4,5}-[0-9]{4}"
+                                              required>
+                                    </div>
+                                    <div class="col-12 col-lg-12">
+                                        <label for="email">
+                                            <b>Email</b>
+                                        </label>
+                                        <input type="email"
+                                               class="form-control"
+                                               name="email"
+                                               placeholder="Ex.: diego@laser.com"
+                                               required>
+                                    </div>
+                                    <div class="col-12 col-lg-6">
+                                        <label for="password">
+                                            <b>Senha</b>
+                                        </label>
+                                        <input type="password"
+                                               class="form-control"
+                                               name="password"
+                                               placeholder="Digite sua senha"
+                                               required>
+                                    </div>
+                                    <div class="col-12 col-lg-6">
+                                        <label for="password2">
+                                            <b>Confirmação de senha</b>
+                                        </label>
+                                        <input type="password"
+                                               class="form-control"
+                                               name="password2"
+                                               placeholder="Digite sua senha mais uma vez"
+                                               required>
+                                    </div>
+                                    <p></p>
+                                    <div>
+                                        <label for="password2">
+                                            <b>Qual sua Área</b>
+                                        </label>
+                                        <select name="area">
+                                            <option value="vendas">
+                                                Vendas
+                                            </option>
+                                            <option value="tecnica">
+                                                Técnica
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <p></p>
+                                    <div class="col-12 text-center">
+                                        <button class="btn btn-success" type="submit">Criar sua conta</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

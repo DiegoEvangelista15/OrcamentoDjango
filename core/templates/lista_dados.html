@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Listar Cotações{% endblock title %}
+{% block content %}
+
+<div class="d-flex justify-content-center">
+    <table style="color: white;border-spacing: 38px;border-collapse: separate">
+        <thead>
+        <tr>
+            <th class="letra">Nome</th>
+            <th>Data da Cotação </th>
+            <th>Download Link</th>
+        </tr>
+        </thead>
+        {% comment %} <tbody>
+            {% for n in software %}
+        <tr>       
+            <td>{{n.name}}</td>
+            <td>{{n.type}}</td>
+            <td><a href="{{n.file_upload.url}}" download="{{n.file_upload.url}}">Download</a></td>       
+        </tr>  
+        {% endfor %} {% endcomment %}
+     </table>
+    
+    </div>
+
+
+{% endblock content %}
