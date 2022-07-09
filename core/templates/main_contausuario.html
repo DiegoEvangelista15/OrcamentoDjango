@@ -6,7 +6,7 @@
 {% block content %}
     <div class="text-center">
         <br>
-        <h3>Bem vindo</h3>
+        <h3>Bem vindo {{ user.username|title }}</h3>
         <br>
         <br>
         <br>
@@ -28,7 +28,7 @@
         <p>
             <br>
         </p>
-        <a href="#">
+        <a href="{% url 'logout' %}">
             <button type="button" class="btn btn-light btn-rounded">Sair</button>
         </a>
     </div>

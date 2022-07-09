@@ -8,4 +8,5 @@ urlpatterns = [
     path('inserir_dados/', views.inserir_dados, name='inserir_dados'),
     path('lista_dados/', views.lista_dados, name='lista_dados'),
     path('criar_orcamento/', views.criar_orcamento, name='criar_orcamento'),
+    path('logout', views.logout, name='logout'),
 ]

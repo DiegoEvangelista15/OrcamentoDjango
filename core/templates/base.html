@@ -50,7 +50,7 @@
                                 <a class="nav-link active" aria-current="page" href="{% url 'inserir_dados' %}">Inserir Dados</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="#">Sair</a>
+                                <a class="nav-link active" aria-current="page" href="{% url 'logout' %}">Sair/Logoff</a>
                             </li>
                             {% if user.is_superuser %}
                                 <li class="nav-item">
