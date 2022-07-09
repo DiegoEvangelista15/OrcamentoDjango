@@ -23,8 +23,10 @@ class Company(Base):
         return self.company_name
     
 class Pessoa(models.Model):
-    nome = models.CharField(max_length=200)
-    email = models.EmailField()
+    name = models.CharField(max_length=200)
+    user = models.CharField(max_length=200)
+    phone = models.IntegerField()
+    email = models.EmailField()     
     
     def __str__(self) -> str:
         return self.nome
