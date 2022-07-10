@@ -39,6 +39,7 @@ class Item(Base):
     price = models.FloatField()
     discount = models.FloatField()  
     
+    
     def __str__(self) -> str:
         return self.item    
    

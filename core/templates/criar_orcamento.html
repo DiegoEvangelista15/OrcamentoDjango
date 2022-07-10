@@ -21,17 +21,24 @@
                     <div class="col-12">
                         <div class="contact-form-area">
                             {% include '_alertas.html' %}
-                            <form action="#" method="post">
+                            <form action="{% url 'criar_orcamento' %}" method="post">
                                 {% csrf_token %}
                                 <div class="row">
-                                    {% for field in form %}
                                     <div class="col-12 col-lg-12">
-                                        <label for="{{ field.id_for_label }}">
-                                            <b>{{ field.label }}</b>
-                                        </label><p></p>
-                                        {{field}}
+                                        <label for="complete_name">
+                                            <b>Nome Completo</b>
+                                        </label>
+                                        
+                                            {{form.item}}
+                                        
                                     </div>
-                                    {% endfor %}
+                                    <div class="col-12 col-lg-12">
+                                        <label for="complete_name">
+                                            <b>Nome Completo</b>
+                                        </label>
+                                        {{form.item}}
+            
+                                    </div>
                                     <p></p>
                                     <div class="col-12 text-center">
                                         <button class="btn btn-success" type="submit">Criar Cotação</button>
@@ -39,7 +46,6 @@
                                             <button type="button" class="btn btn-success">Adicionar Item</button>
                                         </a>
                                     </div>
-
                                 </div>
                             </form>
                         </div>

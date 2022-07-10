@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.models import User
 from django.contrib import auth, messages
-from core.models import Pessoa, Company
+from core.models import Pessoa, Company, Item, Orcamento
 from core.forms import ItemForm, OrcamentoForm
 from openpyxl import Workbook
 
@@ -117,15 +117,15 @@ def listar_clientes(request):
     return render(request, 'listar_clientes.html')
 
 def criar_orcamento(request):
+    #TODO colocar as infos  e seguir com o preechimento do orcamento
     form = OrcamentoForm(request.POST)
     if request.method == 'POST':
-        if form.is_valid():
-            print('deu certo')
-        else:
-            messages.error(request, 'Falha ao preencher!!!')
-            return redirect('criar_orcamento')
+        print(request.POST['item'])
+        
+        return redirect('criar_orcamento')
+    
        
-    return render(request, 'criar_orcamento.html', {'form': form})
+    return render(request, 'criar_orcamento.html',{'form': form})
 
 def listar_itens(request):
     #TODO listar dados por user e superuser verifica tudo
@@ -135,7 +135,23 @@ def criar_itens(request):
     form = ItemForm(request.POST)
     if request.method == 'POST':
         if form.is_valid():
-            print('deu certo')
+            item = request.POST['item']
+            description = request.POST['description']
+            quantity = request.POST['quantity']
+            price = request.POST['price']
+            discount = request.POST['discount']
+            
+            item = Item.objects.create(
+                item=item,
+                description=description,
+                quantity=quantity,
+                price=price,
+                discount=discount,
+            )
+            item.save()
+            messages.success(request, 'Cadastro realizado com sucesso!!!')
+            return redirect('conta_usuario')
+            
         else:
             messages.error(request, 'Falha ao preencher!!!')
             return redirect('criar_itens')

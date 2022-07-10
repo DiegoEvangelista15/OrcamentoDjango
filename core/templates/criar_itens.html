@@ -21,7 +21,7 @@
                     <div class="col-12">
                         <div class="contact-form-area">
                             {% include '_alertas.html' %}
-                            <form action="#" method="post">
+                            <form action="{% url 'criar_itens' %}" method="post">
                                 {% csrf_token %}
                                 <div class="row">
                                     {% for field in form %}
