@@ -25,21 +25,18 @@
                                 {% csrf_token %}
                                 <div class="row">
                                     {% for field in form %}
-                                    <div class="col-12 col-lg-12">
-                                        <label for="{{ field.id_for_label }}">
-                                            <b>{{ field.label }}</b>
-                                        </label><p></p>
-                                        {{field}}
-                                    </div>
+                                        <div class="col-12 col-lg-12">
+                                            <label for="{{ field.id_for_label }}">
+                                                <b>{{ field.label }}</b>
+                                            </label>
+                                            <br>
+                                            {{ field }}
+                                        </div>
                                     {% endfor %}
                                     <p></p>
                                     <div class="col-12 text-center">
-                                        <button class="btn btn-success" type="submit">Criar Cotação</button>
-                                        <a href="{% url 'criar_itens' %}">
-                                            <button type="button" class="btn btn-success">Adicionar Item</button>
-                                        </a>
+                                        <button class="btn btn-success" type="submit">Criar Item</button>
                                     </div>
-
                                 </div>
                             </form>
                         </div>

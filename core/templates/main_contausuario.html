@@ -35,8 +35,20 @@
         <p>
             <br>
         </p>
+        <a href="{% url 'criar_itens' %}">
+            <button type="button" class="btn btn-light btn-rounded">Adicionar Itens</button>
+        </a>
+        <p>
+            <br>
+        </p>
+        <a href="{% url 'listar_itens' %}">
+            <button type="button" class="btn btn-light btn-rounded">Listar Itens</button>
+        </a>
+        <p>
+            <br>
+        </p>
         <a href="{% url 'logout' %}">
-            <button type="button" class="btn btn-light btn-rounded">Sair</button>
+            <button type="button" class="btn btn-danger">Sair</button>
         </a>
     </div>
 {% endblock content %}

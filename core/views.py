@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.models import User
 from django.contrib import auth, messages
 from core.models import Pessoa, Company
+from core.forms import ItemForm, OrcamentoForm
 from openpyxl import Workbook
 
 # Create your views here.
@@ -108,12 +109,36 @@ def inserir_dados(request):
 
 
 def lista_dados(request):
+    #TODO listar dados por user e superuser verifica tudo
     return render(request, 'lista_dados.html')
 
 def listar_clientes(request):
+    #TODO listar dados por user e superuser verifica tudo
     return render(request, 'listar_clientes.html')
 
-
 def criar_orcamento(request):
-    return render(request, 'criar_orcamento.html')
+    form = OrcamentoForm(request.POST)
+    if request.method == 'POST':
+        if form.is_valid():
+            print('deu certo')
+        else:
+            messages.error(request, 'Falha ao preencher!!!')
+            return redirect('criar_orcamento')
+       
+    return render(request, 'criar_orcamento.html', {'form': form})
 
+def listar_itens(request):
+    #TODO listar dados por user e superuser verifica tudo
+    return render(request, 'listar_itens.html')
+
+def criar_itens(request):
+    form = ItemForm(request.POST)
+    if request.method == 'POST':
+        if form.is_valid():
+            print('deu certo')
+        else:
+            messages.error(request, 'Falha ao preencher!!!')
+            return redirect('criar_itens')
+            
+       
+    return render(request, 'criar_itens.html', {'form': form})

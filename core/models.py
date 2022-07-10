@@ -31,3 +31,26 @@ class Pessoa(Base):
     
     def __str__(self) -> str:
         return self.name
+    
+class Item(Base):
+    item = models.CharField(max_length=255)
+    description = models.TextField(max_length=650)
+    quantity = models.PositiveIntegerField()
+    price = models.FloatField()
+    discount = models.FloatField()  
+    
+    def __str__(self) -> str:
+        return self.item    
+   
+class Orcamento(Base):
+    pessoa = models.ForeignKey(User, on_delete=models.CASCADE)
+    pessoa_info = models.ForeignKey(Pessoa, on_delete=models.CASCADE)
+    empresa = models.ForeignKey(Company, on_delete=models.CASCADE)
+    item = models.ManyToManyField(Item)
+    payment_terms = models.CharField(max_length=250)
+    delivery_time = models.PositiveIntegerField()
+    incoterms = models.CharField(max_length=250)
+    
+    def __str__(self) -> str:
+        return '{} - {}'.format(self.pessoa_info, self.empresa)  
+    
