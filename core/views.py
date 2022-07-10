@@ -31,6 +31,7 @@ def logout(request):
 
 
 def conta_usuario(request):
+
     return render(request, 'main_contausuario.html')
 
 
@@ -75,10 +76,8 @@ def cria_conta(request):
             email=email,
             area=area
         )
-        messages.success(request, 'Usuario cadastrado com sucesso!!!')
         pessoa.save()
-
-        
+        messages.success(request, 'Cadastro realizado com sucesso!!!')
         return redirect('index')
 
     return render(request, 'cria_conta.html')
@@ -93,4 +92,5 @@ def lista_dados(request):
 
 
 def criar_orcamento(request):
+
     return render(request, 'criar_orcamento.html')
