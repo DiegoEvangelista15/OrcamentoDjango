@@ -5,6 +5,7 @@
 {% endblock title %}
 {% block content %}
     <div class="text-center">
+        {% include '_alertas.html' %}
         <br>
         <h3>Bem vindo {{ user.username|title }}</h3>
         <br>
@@ -24,6 +25,12 @@
         </p>
         <a href="{% url 'inserir_dados' %}">
             <button type="button" class="btn btn-light btn-rounded">Inserir Dados de Clientes</button>
+        </a>
+        <p>
+            <br>
+        </p>
+        <a href="{% url 'listar_clientes' %}">
+            <button type="button" class="btn btn-light btn-rounded">Listar Clientes</button>
         </a>
         <p>
             <br>

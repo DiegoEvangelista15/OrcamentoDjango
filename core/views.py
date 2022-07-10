@@ -79,18 +79,41 @@ def cria_conta(request):
         pessoa.save()
         messages.success(request, 'Cadastro realizado com sucesso!!!')
         return redirect('index')
-
     return render(request, 'cria_conta.html')
 
 
 def inserir_dados(request):
+    if request.method == 'POST':
+        company_name = request.POST['company_name']
+        company_phone = request.POST['company_phone']
+        company_address = request.POST['company_address']
+        company_contact = request.POST['company_contact']
+        company_mail = request.POST['company_mail']
+        company_site = request.POST['company_site']
+        user = get_object_or_404(User, pk=request.user.id)
+
+        company = Company.objects.create(
+            pessoa=user,
+            company_name=company_name,
+            company_phone=company_phone,
+            company_address=company_address,
+            company_contact=company_contact,
+            company_mail=company_mail,
+            company_site=company_site
+        )
+        company.save()
+        messages.success(request, 'Cadastro realizado com sucesso!!!')
+        return redirect('conta_usuario')
     return render(request, 'inserir_dados.html')
 
 
 def lista_dados(request):
     return render(request, 'lista_dados.html')
 
+def listar_clientes(request):
+    return render(request, 'listar_clientes.html')
+
 
 def criar_orcamento(request):
-
     return render(request, 'criar_orcamento.html')
+
