@@ -13,7 +13,7 @@ class Base(models.Model):
 class Company(Base):
     pessoa = models.ForeignKey(User, on_delete=models.CASCADE)
     company_name = models.CharField(("Nome da Empresa"), max_length=200)
-    company_phone = models.IntegerField()
+    company_phone = models.CharField(max_length=50)
     company_address = models.CharField(("Endereço da Empresa"), max_length=300)
     company_contact = models.CharField(("Contato da Empresa"), max_length=100)
     company_mail = models.EmailField()
@@ -25,7 +25,7 @@ class Company(Base):
 class Pessoa(Base):
     name = models.CharField(max_length=200)
     user = models.CharField(max_length=200)
-    phone = models.IntegerField()
+    phone = models.CharField(max_length=50)
     email = models.EmailField() 
     area = models.CharField(max_length=50)    
     

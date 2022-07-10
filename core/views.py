@@ -11,15 +11,17 @@ def index(request):
     if request.method == 'POST':
         email = request.POST['email']
         password = request.POST['password']
-        
+
         if email == '' or password == '':
-            return redirect ('index')
+            return redirect('index')
         if User.objects.filter(email=email).exists():
-            username = User.objects.filter(email=email).values_list('username', flat=True).get()
-            user = auth.authenticate(request, username=username, password=password)
+            username = User.objects.filter(email=email).values_list(
+                'username', flat=True).get()
+            user = auth.authenticate(
+                request, username=username, password=password)
             if user is not None:
                 auth.login(request, user)
-                return redirect('conta_usuario')   
+                return redirect('conta_usuario')
     return render(request, 'index.html')
 
 
@@ -42,9 +44,43 @@ def cria_conta(request):
         password2 = request.POST['password2']
         area = request.POST['area']
         if not complete_name.strip():
-                messages.error(request, 'O campo nome nao pode ficar vazio')
-                return redirect ('cria_conta')
-  
+            messages.error(request, 'O campo nome nao pode ficar vazio')
+            return redirect('cria_conta')
+        if not username.strip():
+            messages.error(request, 'O campo nome nao pode ficar vazio')
+            return redirect('cria_conta')
+        if not phone.strip():
+            messages.error(request, 'O campo nome nao pode ficar vazio')
+            return redirect('cria_conta')
+        if not email.strip():
+            messages.error(request, 'O campo nome nao pode ficar vazio')
+            return redirect('cria_conta')
+        if password != password2:
+            messages.error(request, 'As senhas nao sao iguais')
+            return redirect('cria_conta')
+        if User.objects.filter(email=email).exists():
+            messages.error(request, 'Esse email ja foi cadastrado!!!')
+            return redirect('cria_conta')
+        if User.objects.filter(username=username).exists():
+            messages.error(request, 'Usuario ja existe!!!')
+            return redirect('cria_conta')
+        user = User.objects.create_user(
+            username=username, email=email, password=password)
+        user.save()
+
+        pessoa = Pessoa.objects.create(
+            name=complete_name,
+            user=username,
+            phone=phone,
+            email=email,
+            area=area
+        )
+        messages.success(request, 'Usuario cadastrado com sucesso!!!')
+        pessoa.save()
+
+        
+        return redirect('index')
+
     return render(request, 'cria_conta.html')
 
 
