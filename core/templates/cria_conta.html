@@ -20,7 +20,8 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="contact-form-area">
-                            <form action="#" method="post">
+                            {% include '_alertas.html' %}
+                            <form action="{% url 'cria_conta' %}" method="post">
                                 {% csrf_token %}
                                 <div class="row">
                                     <div class="col-12 col-lg-12">
@@ -29,7 +30,7 @@
                                         </label>
                                         <input type="text"
                                                class="form-control"
-                                               name="nome"
+                                               name="complete_name"
                                                placeholder="Ex.:Diego Aparecido Evangelista"
                                                required>
                                     </div>
@@ -39,7 +40,7 @@
                                         </label>
                                         <input type="text"
                                                class="form-control"
-                                               name="nome"
+                                               name="username"
                                                placeholder="Ex.:diego evangelista"
                                                required>
                                     </div>

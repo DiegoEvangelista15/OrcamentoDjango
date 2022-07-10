@@ -29,12 +29,22 @@ def logout(request):
 
 
 def conta_usuario(request):
-    # TODO criar e arrumar acesso de acordo com user
     return render(request, 'main_contausuario.html')
 
 
 def cria_conta(request):
-    # TODO criar o formulario e view para criar conta de user
+    if request.method == 'POST':
+        complete_name = request.POST['complete_name']
+        username = request.POST['username']
+        phone = request.POST['phone']
+        email = request.POST['email']
+        password = request.POST['password']
+        password2 = request.POST['password2']
+        area = request.POST['area']
+        if not complete_name.strip():
+                messages.error(request, 'O campo nome nao pode ficar vazio')
+                return redirect ('cria_conta')
+  
     return render(request, 'cria_conta.html')
 
 
