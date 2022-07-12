@@ -26,19 +26,16 @@
                                 <div class="row">
                                     <div class="col-12 col-lg-12">
                                         <label for="complete_name">
-                                            <b>Nome Completo</b>
-                                        </label>
-                                        
-                                            {{form.item}}
-                                        
-                                    </div>
-                                    <div class="col-12 col-lg-12">
-                                        <label for="complete_name">
-                                            <b>Nome Completo</b>
-                                        </label>
-                                        {{form.item}}
-            
-                                    </div>
+                                            <b>Orcamento</b>
+                                        </label>  
+                                                                        
+                                              <select name="item" id="cars">
+                                                {% for n in form.item %} 
+                                                <option name="item">{{n}}</option>    
+                                                {% endfor %}                                       
+                                              </select> 
+                                                                                                                  
+                                    </div> 
                                     <p></p>
                                     <div class="col-12 text-center">
                                         <button class="btn btn-success" type="submit">Criar Cotação</button>

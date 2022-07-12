@@ -32,7 +32,6 @@ def logout(request):
 
 
 def conta_usuario(request):
-
     return render(request, 'main_contausuario.html')
 
 
@@ -113,18 +112,18 @@ def lista_dados(request):
     return render(request, 'lista_dados.html')
 
 def listar_clientes(request):
-    #TODO listar dados por user e superuser verifica tudo
-    return render(request, 'listar_clientes.html')
+    clientes = Company.objects.all()
+    return render(request, 'listar_clientes.html', {'clientes': clientes})
 
 def criar_orcamento(request):
     #TODO colocar as infos  e seguir com o preechimento do orcamento
     form = OrcamentoForm(request.POST)
-    if request.method == 'POST':
-        print(request.POST['item'])
+    if request.method =='POST': 
+        item = request.POST['item']
+        print(item)
+          
         
-        return redirect('criar_orcamento')
-    
-       
+         
     return render(request, 'criar_orcamento.html',{'form': form})
 
 def listar_itens(request):
