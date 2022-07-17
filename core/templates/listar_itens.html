@@ -1,25 +1,30 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block title %}Listar Itens{% endblock title %}
+{% block title %}
+    Listar Itens
+{% endblock title %}
 {% block content %}
-
-<div class="d-flex justify-content-center">
-    <table style="color: white;border-spacing: 38px;border-collapse: separate">
-        <thead>
-        <tr>
-            <th class="letra">Nome</th>
-        </tr>
-        </thead>
-        {% comment %} <tbody>
-            {% for n in software %}
-        <tr>       
-            <td>{{n.name}}</td>
-            <td>{{n.type}}</td>
-            <td><a href="{{n.file_upload.url}}" download="{{n.file_upload.url}}">Download</a></td>       
-        </tr>  
-        {% endfor %} {% endcomment %}
-     </table>
-    
-    </div>
-
-{% endblock content %}
+    <div class="d-flex justify-content-center">
+        <table style="color: white;border-spacing: 38px;border-collapse: separate">
+            <thead>
+                <tr>
+                    <th class="letra">&nbsp&nbsp&nbsp&nbspNome</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for n in itens %}
+                    <tr>
+                        <td>
+                            {{ n.item }}&nbsp&nbsp&nbsp&nbsp
+                            <a href="#">
+                                <button type="button" class="btn btn-success">Editar Itens</button>
+                            </a>
+                            <a href="#">
+                                <button type="button" class="btn btn-danger">Deletar Itens</button>
+                            </a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+    {% endblock content %}

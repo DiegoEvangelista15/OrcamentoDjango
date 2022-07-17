@@ -121,14 +121,15 @@ def criar_orcamento(request):
     if request.method =='POST': 
         item = request.POST['item']
         print(item)
-          
-        
-         
+    #TODO arrumar e exibir as infos corretas
+
+   
     return render(request, 'criar_orcamento.html',{'form': form})
 
 def listar_itens(request):
-    #TODO listar dados por user e superuser verifica tudo
-    return render(request, 'listar_itens.html')
+    #TODO colocar paginação
+    itens = Item.objects.all()
+    return render(request, 'listar_itens.html',{'itens': itens})
 
 def criar_itens(request):
     form = ItemForm(request.POST)
