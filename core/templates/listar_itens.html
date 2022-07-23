@@ -16,10 +16,10 @@
                     <tr>
                         <td>
                             {{ n.item }}&nbsp&nbsp&nbsp&nbsp
-                            <a href="#">
+                            <a href="{% url 'edita_item' n.id %}">
                                 <button type="button" class="btn btn-success">Editar Itens</button>
                             </a>
-                            <a href="#">
+                            <a href="{% url 'deleta_item' n.id %}">
                                 <button type="button" class="btn btn-danger">Deletar Itens</button>
                             </a>
                         </td>

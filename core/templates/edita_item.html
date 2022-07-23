@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+    Edita Itens
+{% endblock title %}
+{% block content %}
+    {% include '_alertas.html' %}
+    <div class="row">
+        <div class="col-12">
+            <p></p>
+            <p>Todos os campos são obrigatórios</p>
+            <div class="contact-form-area">
+                <form action="{% url 'atualiza_item' %}" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <input type="text" id="item_id" class="form-control" name="item_id" value="{{item.id}}" hidden>
+                    <input type="text"
+                           id="receita_id"
+                           class="form-control"
+                           name="receita_id"
+                           value="{{ receita.id }}"
+                           hidden>
+                    <div class="row">
+                        <div class="col-12 col-lg-12">
+                            <label for="nome_receita">
+                                <b>Título do Item</b>
+                            </label>
+                            <input type="item"
+                                   id="item"
+                                   class="form-control"
+                                   name="item"
+                                   value="{{ item.item }}"
+                                   required>
+                        </div>
+                        <div class="col-12">
+                            <label for="description">
+                                <b>Descrição</b>
+                            </label>
+                            <textarea class="form-control" name="description" cols="30" rows="5 "required>{{item.description}}</textarea>
+                        </div>
+                        <div class="col-8">
+                            <label for="quantity">
+                                <b>Quantidade</b>
+                            </label>
+                            <input class="form-control"
+                                   name="quantity"
+                                   value="{{ item.quantity }}"
+                                   required>
+                        </div>
+                        <div class="col-8">
+                            <label for="price">
+                                <b>Preço</b>
+                            </label>
+                            <input class="form-control"
+                                   name="price"
+                                   value="{{ item.price }}"
+                                   required>
+                        </div>
+                        <div class="col-8">
+                            <label for="discount">
+                                <b>Desconto</b>
+                            </label>
+                            <input class="form-control"
+                                   name="discount"
+                                   value="{{ item.discount }}"
+                                   required>
+                        </div>
+                        <p></p>
+                        <div class="col-12 text-center">
+                            <button class="btn btn-success" type="submit">Atualizar</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+{% endblock content %}

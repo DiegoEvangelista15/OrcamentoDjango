@@ -108,19 +108,21 @@ def inserir_dados(request):
 
 
 def lista_dados(request):
-    #TODO listar dados por user e superuser verifica tudo
+    # TODO listar dados por user e superuser verifica tudo
     return render(request, 'lista_dados.html')
 
+
 def listar_clientes(request):
-    #TODO falta colocar a função dos números e paginação
+    # TODO falta colocar a função dos números e paginação
     clientes = Company.objects.all()
     return render(request, 'listar_clientes.html', {'clientes': clientes})
 
+
 def criar_orcamento(request):
-    #TODO colocar as infos  e seguir com o preechimento do orcamento
+    # TODO colocar as infos  e seguir com o preechimento do orcamento
     form = OrcamentoForm(request.POST)
-    
-    if request.method =='POST': 
+
+    if request.method == 'POST':
         if form.is_valid():
             empresa = get_object_or_404(Company, pk=request.POST['empresa'])
             payment_terms = request.POST['payment_terms']
@@ -129,17 +131,16 @@ def criar_orcamento(request):
             user = get_object_or_404(User, pk=request.user.id)
             pessoa_info = get_object_or_404(Pessoa, pk=request.user.id)
             item = Item.objects.filter(id=request.POST['item'])
-            #corrigir esse item, nao esta pegando os valores
-            
-                  
+            # corrigir esse item, nao esta pegando os valores
+
             orcamento = Orcamento.objects.create(
-                pessoa = user,
-                pessoa_info = pessoa_info,
-                empresa = empresa,
-                item = item,
-                payment_terms = payment_terms,
-                delivery_time = delivery_time,
-                incoterms = incoterms,      
+                pessoa=user,
+                pessoa_info=pessoa_info,
+                empresa=empresa,
+                item=item,
+                payment_terms=payment_terms,
+                delivery_time=delivery_time,
+                incoterms=incoterms,
             )
             orcamento.save()
             messages.success(request, 'Cadastro realizado com sucesso!!!')
@@ -147,13 +148,15 @@ def criar_orcamento(request):
         else:
             messages.error(request, 'Falha ao preencher!!!')
             return redirect('criar_orcamento')
-            
-    return render(request, 'criar_orcamento.html',{'form': form})
+
+    return render(request, 'criar_orcamento.html', {'form': form})
+
 
 def listar_itens(request):
-    #TODO colocar paginação e função dos botões
+    # TODO colocar paginação e função dos botões
     itens = Item.objects.all()
-    return render(request, 'listar_itens.html',{'itens': itens})
+    return render(request, 'listar_itens.html', {'itens': itens})
+
 
 def criar_itens(request):
     form = ItemForm(request.POST)
@@ -164,7 +167,7 @@ def criar_itens(request):
             quantity = request.POST['quantity']
             price = request.POST['price']
             discount = request.POST['discount']
-            
+
             item = Item.objects.create(
                 item=item,
                 description=description,
@@ -175,10 +178,34 @@ def criar_itens(request):
             item.save()
             messages.success(request, 'Cadastro realizado com sucesso!!!')
             return redirect('conta_usuario')
-            
+
         else:
             messages.error(request, 'Falha ao preencher!!!')
             return redirect('criar_itens')
-            
-       
+
     return render(request, 'criar_itens.html', {'form': form})
+
+
+def edita_item(request, item_id):
+    item = get_object_or_404(Item, pk=item_id)
+    item_editar = {'item': item}
+    return render(request, 'edita_item.html', item_editar)
+
+
+def deleta_item(request, item_id):
+    item = get_object_or_404(Item, pk=item_id)
+    item.delete()
+    return redirect('listar_itens')
+
+
+def atualiza_item(request):
+    if request.method == 'POST':
+        item_id = request.POST['item_id']
+        i = Item.objects.get(pk=item_id)  # take all information
+        i.item = request.POST['item']
+        i.description = request.POST['description']
+        i.quantity = request.POST['quantity']
+        i.price = request.POST['price']
+        i.discount = request.POST['discount']
+        i.save()
+        return redirect('listar_itens')

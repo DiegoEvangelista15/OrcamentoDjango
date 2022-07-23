@@ -55,3 +55,6 @@ class Orcamento(Base):
     def __str__(self) -> str:
         return '{} - {}'.format(self.pessoa_info, self.empresa)  
     
+    
+     
+    
