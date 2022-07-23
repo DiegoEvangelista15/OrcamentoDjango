@@ -112,22 +112,46 @@ def lista_dados(request):
     return render(request, 'lista_dados.html')
 
 def listar_clientes(request):
+    #TODO falta colocar a função dos números e paginação
     clientes = Company.objects.all()
     return render(request, 'listar_clientes.html', {'clientes': clientes})
 
 def criar_orcamento(request):
     #TODO colocar as infos  e seguir com o preechimento do orcamento
     form = OrcamentoForm(request.POST)
+    
     if request.method =='POST': 
-        item = request.POST['item']
-        print(item)
-    #TODO arrumar e exibir as infos corretas
-
-   
+        if form.is_valid():
+            empresa = get_object_or_404(Company, pk=request.POST['empresa'])
+            payment_terms = request.POST['payment_terms']
+            delivery_time = request.POST['delivery_time']
+            incoterms = request.POST['incoterms']
+            user = get_object_or_404(User, pk=request.user.id)
+            pessoa_info = get_object_or_404(Pessoa, pk=request.user.id)
+            item = Item.objects.filter(id=request.POST['item'])
+            #corrigir esse item, nao esta pegando os valores
+            
+                  
+            orcamento = Orcamento.objects.create(
+                pessoa = user,
+                pessoa_info = pessoa_info,
+                empresa = empresa,
+                item = item,
+                payment_terms = payment_terms,
+                delivery_time = delivery_time,
+                incoterms = incoterms,      
+            )
+            orcamento.save()
+            messages.success(request, 'Cadastro realizado com sucesso!!!')
+            return redirect('criar_itens')
+        else:
+            messages.error(request, 'Falha ao preencher!!!')
+            return redirect('criar_orcamento')
+            
     return render(request, 'criar_orcamento.html',{'form': form})
 
 def listar_itens(request):
-    #TODO colocar paginação
+    #TODO colocar paginação e função dos botões
     itens = Item.objects.all()
     return render(request, 'listar_itens.html',{'itens': itens})
 
